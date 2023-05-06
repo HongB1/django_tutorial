@@ -82,3 +82,5 @@ db.sqlite3
 .idea
 
 !/pragmatic/
+
+__pycache__/
