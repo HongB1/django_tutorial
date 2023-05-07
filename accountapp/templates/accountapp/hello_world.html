@@ -2,21 +2,27 @@
 
 {% block content %}
 
-    <div style="height: 20rem; background-color: #38df81; border-radius: 1rem; margin: 2rem;">
-        <h1>
-            testing
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center">
+        <h1 style="font-family: 'lobster', cursive;">
+{#            cursive라고 하는 건 lobster라는 폰트가 없으면 cursive를 사용하라는 것#}
+            HELLO WORLD LIST!
         </h1>
 
         <form action="/account/hello_world/" method="post">
 {#            장고를 이용해서 POST메소드를 사용해서 요청할 땐 항상 폼안에 csrf 토큰이라고 명시를 해줘야함#}
             {% csrf_token %}
+            <div>
+                <input type="text" name="hello_world_input">
+            </div>
             <input type="submit" class="btn btn_primary" value="POST">
         </form>
 
+        {% if hello_world_output %}
         <h1>
 {#            쌍중괄호를 열어서 데이터 이름을 명시해주면 이 text가 존재하면 장고가 이 내용을 적어서 리턴해주게 됨#}
-            {{ text }}
+            {{ hello_world_output.text }}
         </h1>
+        {%  endif %}
 
 
     </div>
