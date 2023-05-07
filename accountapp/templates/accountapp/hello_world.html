@@ -6,5 +6,18 @@
         <h1>
             testing
         </h1>
+
+        <form action="/account/hello_world/" method="post">
+{#            장고를 이용해서 POST메소드를 사용해서 요청할 땐 항상 폼안에 csrf 토큰이라고 명시를 해줘야함#}
+            {% csrf_token %}
+            <input type="submit" class="btn btn_primary" value="POST">
+        </form>
+
+        <h1>
+{#            쌍중괄호를 열어서 데이터 이름을 명시해주면 이 text가 존재하면 장고가 이 내용을 적어서 리턴해주게 됨#}
+            {{ text }}
+        </h1>
+
+
     </div>
 {% endblock %}
