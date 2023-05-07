@@ -17,11 +17,13 @@
             <input type="submit" class="btn btn_primary" value="POST">
         </form>
 
-        {% if hello_world_output %}
-        <h1>
-{#            쌍중괄호를 열어서 데이터 이름을 명시해주면 이 text가 존재하면 장고가 이 내용을 적어서 리턴해주게 됨#}
-            {{ hello_world_output.text }}
-        </h1>
+        {% if hello_world_list %}
+            {% for hello_world in hello_world_list %}
+            <h4>
+    {#            쌍중괄호를 열어서 데이터 이름을 명시해주면 이 text가 존재하면 장고가 이 내용을 적어서 리턴해주게 됨#}
+                {{ hello_world.text }}
+            </h4>
+            {%  endfor %}
         {%  endif %}
 
 
