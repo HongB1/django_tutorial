@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import HelloWorld
 
@@ -11,7 +11,6 @@ from accountapp.models import HelloWorld
 # Create your views here.
 
 def hello_world(request):
-
     if request.method == "POST":
 
         temp = request.POST.get('hello_world_input')
@@ -25,29 +24,16 @@ def hello_world(request):
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
 
+
 class AccountCreativeView(CreateView):
     # 네 가지 파라미터를 넘겨줬음
-    model = User #장고에서 기본으로 제공해주는 것
+    model = User  # 장고에서 기본으로 제공해주는 것
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world') # reverse? reverse_lazy?
+    success_url = reverse_lazy('accountapp:hello_world')  # reverse? reverse_lazy?
     template_name = 'accountapp/create.html'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'
